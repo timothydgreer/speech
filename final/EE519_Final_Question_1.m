@@ -1,6 +1,11 @@
 load('final2017_p1.mat');
-%Code for part a)
 y = speech;
+
+%Hear the sound
+%speech_big = [speech, speech, speech, speech, speech, speech, speech,... 
+%speech, speech, speech, speech, speech, speech, speech, speech, speech];
+%sound(speech_big,10000);
+%Sounds like 'ah' at 120 Hz! Male voice
 figure
 plot(y)
 ham = hamming(250);
@@ -25,17 +30,7 @@ ilogffy = ifft(logffy);
 ilogffy;
 figure
 plot(ilogffy(1:200))
-% inds = 0;
-% for i = 20:140
-%     if abs(ilogffy(i)) > 10*abs(ilogffy(i+1))
-%         inds = [inds, i];
-%     end
-% end
-% inds
 
-
-
-%Part b)
 %Find the max of the cepstrum between 20 and 140. This is the peak
 [mag, ind] = max(abs(ilogffy(20:140)))
 %Correct for the index (starts at 20, not 0)
@@ -55,8 +50,6 @@ quant_val = quantized_pitch(ind_quant)
 percent_err = abs(quant_val-pitch)/pitch
 
 
-
-%Part d)
 max_c_quant = max(ilogffy(1:28));
 min_c_quant = min(ilogffy(1:28));
 quantized_c = min_c_quant:(max_c_quant-min_c_quant)/(-1+2^7):max_c_quant;
@@ -78,7 +71,6 @@ figure
 plot(ilogffy(1:28))
 
 
-%Part e)
 %Lifter!
 cq_res = cq;
 for i = 2:length(cq)
@@ -86,7 +78,7 @@ for i = 2:length(cq)
 end
 
 
-%See what the lifter does to signal
+%Uncomment two lines below to see what the lifter does to signal
 %figure
 %plot(cq_res)
 
