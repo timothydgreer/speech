@@ -1,4 +1,4 @@
-load('final2017_p1.mat');
+load('speech.mat');
 y = speech;
 
 %Hear the sound
