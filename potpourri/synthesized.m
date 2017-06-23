@@ -1,15 +1,15 @@
 %Reading in the data
 
-formants=load('data/sa1.frm');
+formants=load('sa1.frm');
 formant1=formants(:,1);
 formant2=formants(:,2);
 formant3=formants(:,3);
 formant4=formants(:,4);
 
-powers=load('data/sa1.pwr');
+powers=load('sa1.pwr');
 powers=power(10,powers/10);
 
-pitchfreqs=load('data/sa1.f0');
+pitchfreqs=load('sa1.f0');
 %=======================================================================
 
 %=======================================================================
@@ -46,8 +46,8 @@ for ii = 1:1:length(pitchfreqs)
     if (pitchfreqs(ii)==0)
         %Unvoiced region
         tempwindow=0.0005*randn(1,length(tempwindow));
-        impulsetrain=[impulsetraintempwindow];
-        rngshuffle;
+        impulsetrain=[impulsetrain tempwindow];
+        rng shuffle;
         continue;
     end
 
@@ -67,7 +67,7 @@ for ii = 1:1:length(pitchfreqs)
         index=index+pitchperiod;
     end
     residualsamples=(startloc+index+lenglottalpulse-0.010*Fs);
-    impulsetrain=[impulsetraintempwindow];
+    impulsetrain=[impulsetrain tempwindow];
 end
 %=======================================================================
 

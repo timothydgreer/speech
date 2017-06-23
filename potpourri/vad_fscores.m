@@ -1,5 +1,5 @@
-[mywav,Fs]=audioread('data/hw2vad.wav');
-groundTruth=load('data/vad.csv');
+[mywav,Fs]=audioread('vad.wav');
+groundTruth=load('vad.csv');
 vad=groundTruth(:,2)';
 %Fraction of voiced frames:
 disp(sum(vad)/length(vad) )%0.5183
@@ -33,7 +33,7 @@ allfmeas=zeros(1,length(allthresh));
 for thresh=1:length(allthresh)
     stevad=zeros(1,length(vad));
     stevad(ste>allthresh(thresh))=1;
-    if sum(stevad)̃=0
+    if sum(stevad)~=0
         allprec(thresh)=sum(stevad.*vad)/sum(stevad);
     end
     allrec(thresh)=sum(stevad.*vad)/sum(vad);
@@ -55,7 +55,7 @@ for thresh=1:length(allthresh)
     stzcrvad=zeros(1,length(vad));
     stzcrvad(stzcr<allthresh(thresh))=1;
     %Voiced frames are expected to have lower ZCR
-    if sum(stzcrvad)̃=0
+    if sum(stzcrvad)~=0
         allprec(thresh)=sum(stzcrvad.*vad)/sum(stzcrvad);
     end
     allrec(thresh)=sum(stzcrvad.*vad)/sum(vad);

@@ -1,4 +1,4 @@
-load 'hw3.mat';
+load 'lpc.mat';
 f=22050;
 N=length(s);
 p=12;
